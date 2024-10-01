@@ -1,6 +1,6 @@
 import Router, { Request, Response } from 'express'
-import IdentifyLocationsController from './controllers/identifyLocations/identify-locations-controller';
-import IdentifyLocationUsecase from '../domain/usecases/identifyLocations/identifiy-locations-usecase';
+import IdentifyLocationsController from './controllers/identify-locations-controller';
+import IdentifyLocationUsecase from '../usecases/identifyLocations/identifiy-locations-usecase';
 
 const router = Router()
 const identifyLocationsUsecase = new IdentifyLocationUsecase()
@@ -14,7 +14,7 @@ router.get('/', (req: Request, res: Response) => {
 })
 
 router.post('/identify/locations', async (req: Request, res: Response) => {
-  const response = await identifyLocationsController.execute(req, res)
+  const response = await identifyLocationsController.handle(req, res)
   res.status(response.code).json(response)
 })
 
