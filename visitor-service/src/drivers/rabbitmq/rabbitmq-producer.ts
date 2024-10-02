@@ -1,4 +1,5 @@
 import amqp from 'amqplib'
+import { RabbitMQChannelNotAvailableError, RabbitMQConnectionFailedError, RabbitMQMessageNotSentError } from '../../errors/rabbitmq'
 
 export default class RabbitMQProducer {
   private queueName: string
@@ -16,13 +17,13 @@ export default class RabbitMQProducer {
       await this.channel.assertQueue(this.queueName, { durable: true })
     } catch (error) {
       console.error('Error connecting to RabbitMQ:', error)
-      throw new Error('RabbitMQ connection failed')
+      throw new RabbitMQConnectionFailedError(error)
     }
   }
 
   async sendMessage(message: any) {
     if (!this.channel) {
-      throw new Error('Channel is not available. Call connect() first.')
+      throw new RabbitMQChannelNotAvailableError()
     }
 
     try {
@@ -31,7 +32,7 @@ export default class RabbitMQProducer {
       console.log(`Message sent to ${this.queueName}:`, message)
     } catch (error) {
       console.error('Error sending message:', error)
-      throw new Error('Failed to send message')
+      throw new RabbitMQMessageNotSentError(error)
     }
   }
 
