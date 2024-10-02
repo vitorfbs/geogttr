@@ -3,9 +3,10 @@ import IdentifyLocationUsecase from '../../usecases/identifyLocations/identifiy-
 import identifyLocationsHTTPRequestSchema from "../../validators/http/identify-locations/identify-locations-request";
 import { Controller } from "./controller";
 import { HttpResponse, accepted, badRequest, internalServerError } from "../protocols/http";
+import Usecase from "../../usecases/usecase";
 
 export default class IdentifyLocationsController implements Controller {
-  identifyLocationUsecase: IdentifyLocationUsecase
+  identifyLocationUsecase: Usecase
 
   constructor(identifyLocationUsecase: IdentifyLocationUsecase) {
     this.identifyLocationUsecase = identifyLocationUsecase

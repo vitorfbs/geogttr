@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import RabbitMQProducer from "../../drivers/rabbitmq/rabbitmq-producer";
 import { IdentifyLocationsData, IdentifyLocationsMessageData } from '../../interfaces/usecases';
+import Usecase from '../usecase';
 
-export default class IdentifyLocationUsecase {
+export default class IdentifyLocationUsecase implements Usecase{
   rabbitMQProducer: RabbitMQProducer
   
   constructor() {
