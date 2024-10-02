@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import IdentifyLocationUsecase from '../../usecases/identifyLocations/identifiy-locations-usecase';
+import IdentifyLocationUsecase from '../../usecases/identifyLocations/identifiy-locations';
 import identifyLocationsHTTPRequestSchema from "../../validators/http/identify-locations/identify-locations-request";
 import { Controller } from "./controller";
 import { HttpResponse, accepted, badRequest, internalServerError } from "../protocols/http";
@@ -10,6 +10,7 @@ export default class IdentifyLocationsController implements Controller {
   constructor(identifyLocationUsecase: IdentifyLocationUsecase) {
     this.identifyLocationUsecase = identifyLocationUsecase
   }
+
   async handle (req: Request, res: Response): Promise<HttpResponse> {
     try {
       const body = req.body
@@ -22,9 +23,8 @@ export default class IdentifyLocationsController implements Controller {
 
       const result =  await this.identifyLocationUsecase.execute(body)
 
-      return accepted(result)
+      return accepted(result.message)
     } catch (error) {
-      console.log(error)
       return internalServerError()
     }
   }

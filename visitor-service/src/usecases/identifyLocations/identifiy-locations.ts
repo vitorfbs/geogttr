@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import RabbitMQProducer from "../../drivers/rabbitmq/rabbitmq-producer";
-import { IdentifyLocationsServiceMessageSchema } from '../../schemas/request';
+import { IdentifyLocationsData, IdentifyLocationsMessageData } from '../../interfaces/usecases';
 
 export default class IdentifyLocationUsecase {
   rabbitMQProducer: RabbitMQProducer
@@ -9,12 +9,12 @@ export default class IdentifyLocationUsecase {
     this.rabbitMQProducer = new RabbitMQProducer('identify.locations.request')
   }
 
-  async execute (identifyLocationsRequest: IdentifyLocationsServiceMessageSchema) {
+  async execute (data: IdentifyLocationsData) {
     try {
-      const identifyLocationsMessage = {
+      const identifyLocationsMessage: IdentifyLocationsMessageData = {
         messageUUID: uuidv4(),
-        title: identifyLocationsRequest.title,
-        body: identifyLocationsRequest.body
+        title: data.title,
+        body: data.body
       }
     
       await this.rabbitMQProducer.connect();
