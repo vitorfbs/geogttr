@@ -8,7 +8,8 @@
     "build:watch": "npx tsc --watch",
     "start": "node --watch ./dist/main.js",
     "dev": "nodemon --watch src --exec ts-node src/main.ts",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "github.com/vitorfbs",
@@ -31,6 +32,7 @@
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "http-status": "^1.7.4",
     "joi": "^17.13.3",
