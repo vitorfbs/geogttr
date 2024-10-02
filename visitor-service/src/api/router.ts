@@ -1,6 +1,6 @@
 import Router, { Request, Response } from 'express'
-import IdentifyLocationsController from './controllers/identify-locations-controller';
-import IdentifyLocationUsecase from '../usecases/identifyLocations/identifiy-locations-usecase';
+import IdentifyLocationsController from './controllers/identify-locations';
+import IdentifyLocationUsecase from '../usecases/identifyLocations/identifiy-locations';
 
 const router = Router()
 const identifyLocationsUsecase = new IdentifyLocationUsecase()
