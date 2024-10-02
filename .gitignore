@@ -1,0 +1,8 @@
+# NODE
+node_modules
+dist
+coverage
+# package-lock.json
+# PYTHON
+__pycache__
+*.db
